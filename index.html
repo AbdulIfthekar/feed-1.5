@@ -4,64 +4,36 @@
     <title>{{content.title}}</title>
     <script type="text/javascript" src="vendor/jquery.min.js"></script>
     <script type="text/javascript" src="vendor/angular.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
     <style>
-	.overContainer{
-		color:#000;
-		text-align:center;
-		
-	}
-	.overContainer .title{
-		font-size:30px;
-	}
-	.overContainer .desc{
-		font-size:14px;
-		line-height:1.71;
-		margin:20px 0;
-	}
-		.container{
-			display:none;
-		}
-		.menu-item{
-			display:inline-block;
-			float:left;
-			cursor:pointer;
-			
-			
-		}
-		.menu-item span.title{
-			color#000;
-			background:#eee;
-			
-		}
-		.menu-item:hover .container{
-			display:block;
-			position:absolute;
-			left:0;
-			right:0;
-			
-		}
-		
+
 	</style>
 </head>
 <body>
 
 <div dynamic-menu content="content"></div>
-<div ng-repeat="(key, value) in (content.rows| groupBy: 'category')"><div>
-	<div class="menu-item"><span class="title">{{key}}</span>
-		<div class="container">
-		<div ng-repeat="subitem in value">
-			<div class="container-wrapper">
-				<div class="title"><a ng-href="{{subitem.url}}">{{subitem.title}}</a></div>
-				<div class="image">{{subitem.description}}</div>
-				<div class="desc"><img ng-src="{{subitem.imageHref}}"></img></div>
-			</div>
-		</div>
-		</div>
-	</div>
-	</div>
-</div>
+<ul class="nav navbar-nav">
+    <li class="title active"><a href="#">Home</a></li>
+	<li ng-repeat="(key, value) in (content.rows| groupBy: 'category')">
 
 
+	<a class="test" tabindex="-1" href="#">{{key}}</a>
+	<ul class="dropdown-menu">
+		<li>
+		<table>
+		<tr ng-repeat="subitem in value">
+		<td><a ng-href="{{subitem.url}}" class="sub-title">{{subitem.title}}</a>
+				<div class="desc">{{subitem.description}}</div>
+				<div class="image"><img ng-src="{{subitem.imageHref}}"></img></div>
+		</td>
+		</tr>
+		</table>
+			</li>
+		</ul>
+		</li>
+</ul>
 </body>
 </html>
